@@ -4,7 +4,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const Product = require('./models/productModel');
 
- app.use(express.json())
+// config for json and parser
+
+app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
 
@@ -67,6 +69,21 @@ app.put('/products/:id',async(req,res) => {
         const updatedProduct = await Product.findById(id)
         res.status(200).json(updatedProduct)
     }catch(error){
+        res.status(500).json({message: error.message});
+    }
+})
+
+// delete a product
+
+app.delete('/product/:id',async(req,res) => {
+    try {
+        const {id} = req.params
+        const product = await Product.findByIdAndDelete(id)
+        if(!product){
+            return res.status(404).json({message:`The given ${id} object is not found in database`})
+        }
+        res.status(200).json(product)
+    } catch (error) {
         res.status(500).json({message: error.message});
     }
 })
