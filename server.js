@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const path = require('path')
 const bodyParser = require('body-parser');
 const Product = require('./models/productModel');
 
@@ -9,6 +10,7 @@ const Product = require('./models/productModel');
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
+app.set("view engine","ejs");
 
 //routes
 app.get('/',(req,res) => {
@@ -86,6 +88,39 @@ app.delete('/product/:id',async(req,res) => {
     } catch (error) {
         res.status(500).json({message: error.message});
     }
+})
+
+
+// upload images to file system using multer
+
+
+const ejs = require('ejs');
+
+const multer = require('multer'); // added multer to required
+
+
+const storage = multer.diskStorage({
+    destination : ( req , file , cb) => {
+        cb(null,'Images')
+    },
+    filename : (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})          //created storage object
+
+const upload = multer({ storage : storage }) // created middleware
+
+// get the uplodaded file 
+
+app.get("/upload",(req,res) => {
+    res.render("upload");
+})
+
+//upload a single file 
+
+app.post("/upload",upload.single("image"),(req,res) => {
+    res.send("Image Uploaded");
 })
 
 
