@@ -3,6 +3,9 @@ const { port,base_url } = require("./config/config.js");
 
 const createFile = (req,res) => {
     if(req.file){
+      console.log("-------------------------")
+      console.log(req.file)
+      console.log("--------------------------")
         let fileName = req.file.location
         //let fileName = req.file.filename
         let path = { path: `${base_url}/${fileName}` };

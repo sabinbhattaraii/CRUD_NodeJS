@@ -15,7 +15,7 @@ let storage = new GridFsStorage({
     file : (req, file) => {
         return{
             filename : Date.now() + file.originalname,
-            bucket : 'uploads',
+            bucketName : 'uploads',
         }
     }
 })
