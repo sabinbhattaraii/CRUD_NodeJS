@@ -1,6 +1,7 @@
-import { config } from "dotenv";
+const port = process.env.PORT
+const base_url = process.env.BASE_URL || "localhost:3000"
 
-config()
-
-export const port = process.env.PORT
-export const base_url = process.env.BASE_URL || "localhost:3000"
+module.exports = {
+    port,
+    base_url
+}

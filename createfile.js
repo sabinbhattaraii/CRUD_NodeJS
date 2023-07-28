@@ -1,10 +1,10 @@
-import { port,base_url } from "./config/config";
+const { port,base_url } = require("./config/config.js");
 
 
 const createFile = (req,res) => {
     if(req.file){
-        //let fileName = req.file.location
-        let fileName = req.file.filename
+        let fileName = req.file.location
+        //let fileName = req.file.filename
         let path = { path: `${base_url}/${fileName}` };
         console.log(port);
         let successJson = {
@@ -28,4 +28,4 @@ const createFile = (req,res) => {
     }
 }
 
-export default createFile
+module.exports = createFile 

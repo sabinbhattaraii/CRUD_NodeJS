@@ -4,6 +4,7 @@ const app = express();
 const path = require('path')
 const bodyParser = require('body-parser');
 const Product = require('./models/productModel');
+require("dotenv").config();
 
 // config for json and parser
 
@@ -123,6 +124,10 @@ app.post("/upload",upload.single("image"),(req,res) => {
     res.send("Image Uploaded");
 })
 
+// upload file to mongodb
+const uploadRouter = require('./uploadRoute.js')
+
+app.use("api/file",uploadRouter)
 
 //mongoose 
 

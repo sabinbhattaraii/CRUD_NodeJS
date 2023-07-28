@@ -1,7 +1,8 @@
-import multer from "multer";
-import path from "path";
-import { GridFsStorage } from "multer-gridfs-storage";
-import { MongoClient } from 'mongodb';
+const multer = require('multer')
+const path = require('path')
+const { GridFsStorage } = require('multer-gridfs-storage')
+const { MongoClient } = require('mongodb')
+
 
 const uri = 'mongodb+srv://sabin123:sabin123@cluster0.6xnhi3r.mongodb.net/Crud_NodeApi?retryWrites=true&w=majority'
 const dbName = 'fileupload'
@@ -52,4 +53,5 @@ const upload = multer({
     limit : limit,
 })
 
-export default upload
+module.exports = {
+    upload:upload }
