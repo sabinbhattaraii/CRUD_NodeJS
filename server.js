@@ -127,7 +127,7 @@ app.post("/upload",upload.single("image"),(req,res) => {
 // upload file to mongodb
 const uploadRouter = require('./uploadRoute.js')
 
-app.use("api/file",uploadRouter)
+app.use("/api/file/upload",uploadRouter)
 
 //mongoose 
 
