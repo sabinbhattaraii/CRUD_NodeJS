@@ -6,6 +6,8 @@ const createFile = (req,res) => {
       console.log("-------------------------")
       console.log(req.file)
       console.log("--------------------------")
+      console.log(req.file.path)
+      console.log("-----------------------------")
         let fileName = req.file.location
         //let fileName = req.file.filename
         let path = { path: `${base_url}/${fileName}` };
