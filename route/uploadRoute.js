@@ -1,6 +1,6 @@
 const Router = require('express')
-const upload = require('./middleware/upload.js')
-const createFile = require('./createfile.js')
+const upload = require('../middleware/upload.js')
+const createFile = require('../createfile.js')
 
 const uploadRouter = Router();
 
