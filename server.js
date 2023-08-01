@@ -125,9 +125,15 @@ app.post("/upload",upload.single("image"),(req,res) => {
 })
 
 // upload file to mongodb
-const uploadRouter = require('./route/uploadRoute.js')
+const uploadRouter = require('./route/uploadRoute.js');
 
 app.use("/api/file/upload",uploadRouter)
+
+
+// for search feature 
+const searchRouter = require('./route/searchRouter');
+app.use("/api/search",searchRouter)
+
 
 //mongoose 
 
